@@ -4,35 +4,26 @@
 使用Python的requests库写的
 太原理工大学校园网自动重连脚本
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+1.  首先下载`校园网自动重连.py`
+2.  修改其中的【校园网用户名】和【校园网密码】为你自己校园网账号的账号和密码
+3.  python 校园网自动重连.py
 
 
-#### 特技
+#### 常见问题
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+1. 我设置开机自启动时为什么直接报错退出了？
+答： 电脑刚开机时可能WIFI等网络还没有自动连接上，则会导致报错。可以在自启动脚本中加入一段时间的延迟。
+下面的例子就是延迟20秒之后再启用这个脚本。
+`start.bat`
+```shell
+timeout -t 20 -nobreak > NUL
+python "C:\Users\xiaoB\PycharmProjects\pythonProject\校园网自动重连.py"
+pause
+```
+
+2. 这个检测自动重连的原理是什么？
+答：他每分钟会自动请求一次百度，查看是否会出现错误。如果有错误则会执行自动重连的操作，没有错误则一分钟之后再检测一次，如此循环往复
+另外，如果重试次数超过10次仍未重连成功，程序会自动退出。
